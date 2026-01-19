@@ -42,20 +42,26 @@ function operadorSeleccionado(operadorCalculo) {
     operador = operadorCalculo; 
     operadorSeleccion = true;
 
+    // Selector en español
     let botones = document.querySelectorAll('.boton-operador');
     botones.forEach(boton => boton.classList.remove('seleccionado'))
 
     let operadorSeleccionado = document.querySelector(`button[data-operador="${operador}"]`);
 
-    operadorSeleccionado.classList.add('seleccionado');
+    if (operadorSeleccionado) {
+        operadorSeleccionado.classList.add('seleccionado');
+    }
 } 
 
 function calcular() { 
     let resultado;
 
+    // Selector en español
     let operadorSeleccionado = document.querySelector(`button[data-operador="${operador}"]`);
 
-    operadorSeleccionado.classList.remove('seleccionado');
+    if (operadorSeleccionado) {
+        operadorSeleccionado.classList.remove('seleccionado');
+    }
 
     if (operador === "%") {
         resultado = parseFloat(primerosNumeros / 100)
@@ -63,8 +69,18 @@ function calcular() {
     else if (operador === "√") {
         resultado = Math.sqrt(primerosNumeros)
     } else {
-        resultado = eval(primerosNumeros + operador + segundosNumeros);
+        try {
+            resultado = eval(primerosNumeros + operador + segundosNumeros);
+        } catch (e) {
+            resultado = "Error";
+        }
     }
+    
+    // Validar infinito o NaN
+    if (!isFinite(resultado) || isNaN(resultado)) {
+        resultado = "Error";
+    }
+
     datosMostrar.value = resultado; 
     operador = ''; 
     primerosNumeros = resultado.toString();
@@ -74,7 +90,12 @@ function calcular() {
 
 function limpiar() {
     let valorActual = datosMostrar.value;
-    datosMostrar.value = valorActual.slice(0, -1)
+    datosMostrar.value = valorActual.slice(0, -1);
+    if (operador === '') {
+        primerosNumeros = datosMostrar.value;
+    } else {
+        segundosNumeros = datosMostrar.value; 
+    }
 }
 
 function limpiarTodo() { 
@@ -83,4 +104,8 @@ function limpiarTodo() {
     primerosNumeros = '';
     segundosNumeros = ''; 
     operadorSeleccion = false;
+    
+    // Selector en español
+    let botones = document.querySelectorAll('.boton-operador');
+    botones.forEach(boton => boton.classList.remove('seleccionado'));
 }
