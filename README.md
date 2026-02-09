@@ -1,4 +1,4 @@
-# calculadora
+# web-calculadora
 
 ## 📌 Descripción
 Este proyecto forma parte de mi portafolio personal.  
