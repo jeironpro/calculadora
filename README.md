@@ -1,10 +1,7 @@
 # web-calculadora
 
-## 📌 Descripción
-Este proyecto forma parte de mi portafolio personal.  
-El objetivo es demostrar buenas prácticas de programación, organización y documentación en GitHub.  
-El proyecto se mejoró visualmente usando el modelo de IA Gemini 3 Pro (High) de Antigravity.
+Calculadora web que realiza las operaciones aritméticas básicas: suma, resta, multiplicación y división.
 
-## 📜 Licencia
+## Licencia
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.
